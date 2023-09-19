@@ -45,7 +45,8 @@
     function creaAllenatore(){
         let nome = document.querySelector("#nome").value;
         if(nome == ""){
-            event.preventDefault;
+          // console.log(event);
+            event.preventDefault();
             alert("Inserisci il tuo nome!!");
         }
         function Allenatore(nome){
@@ -53,8 +54,18 @@
         }
         let allenatore = new Allenatore(nome);
         let allenatoreJSON = JSON.stringify(allenatore);
-        
-        fetch()
+
+        localStorage.setItem("allenatore", allenatoreJSON);
+
+        let URL = "http://localhost:3000/allenatori";
+
+        fetch( URL , {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: allenatoreJSON
+    })
     }
 
     form.addEventListener("submit", creaAllenatore);

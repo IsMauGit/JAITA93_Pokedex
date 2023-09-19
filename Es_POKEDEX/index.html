@@ -13,10 +13,10 @@
 
 </head>
 
-<body>
+<body class="bg-danger">
     <header>
         <!-- place navbar here -->
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <nav class="navbar navbar-expand-sm bg-warning">
             <div class="container-fluid">
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -29,6 +29,12 @@
     </header>
     <main>
 
+        <div class="container mt-5">
+            <h1 id="saluto"></h1>
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4 m-5" id="listaPokemon"></div>
+        </div>
+
+
 
     </main>
     <footer>
@@ -38,6 +44,112 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+    </script>
+
+    <script>
+        let saluto = document.querySelector("#saluto");
+        let listaPokemon = document.querySelector("#listaPokemon");
+
+        function salutaAllenatore() {
+
+            let nomeAllenatore = JSON.parse(localStorage.getItem("allenatore")).nome;
+            // console.log(nomeAllenatore);
+            saluto.innerHTML += "Ciao " + nomeAllenatore + "!!";
+        }
+
+        function Pokemon(nome, img, descrizione) {
+            this.nome = nome;
+            this.img = img;
+            this.descrizione = descrizione;
+
+        }
+
+        function catturaPokemon(pokemon) {
+            let URL = "http://localhost:3000/pokedex";
+            fetch( URL , {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: pokemon
+            })
+            .then(data =>{return data.json()})
+            }
+        
+
+        function stampaCard() {
+            let URL = "https://pokeapi.co/api/v2/pokemon/?limit=20&offset=0";
+            fetch(URL)
+                .then(data => {
+                    return data.json();
+                })
+                .then(response => {
+                    // console.log(response);
+                    response.results.forEach(obj => {
+                        // console.log(obj);
+                        let nomePoke = obj.name;
+                        let urlPoke = obj.url;
+
+                        fetch(urlPoke)
+                            .then(data => {
+                                return data.json();
+                            })
+                            .then(response => {
+                                // console.log(response);
+                                let imgPoke = response.sprites.front_default;
+                                // console.log(imgPoke);
+                                let urlPoke2 = response.species.url;
+
+                                fetch(urlPoke2)
+                                    .then(data => {
+                                        return data.json();
+                                    })
+                                    .then(response => {
+                                        // console.log(response);
+                                        response.flavor_text_entries.forEach(element => {
+                                            if (element.language.name == "it" && element
+                                                .version.name == "x") {
+                                                // console.log(element.flavor_text);
+                                                let descrizionePoke = element.flavor_text;
+                                                let pokemon = new Pokemon(nomePoke, imgPoke,
+                                                    descrizionePoke);
+                                                // console.log(pokemon);
+
+                                                // let btnPoke = document.createElement("button");
+                                                // btnPoke.innerHTML = "CATTURA!";
+                                                // btnPoke.setAttribute("class", "btn btn-warning");
+
+                                                let pokemonJson = JSON.stringify(pokemon);
+                                                console.log(pokemonJson);
+
+                                                let card = ` <div class="col">
+                                                                    <div class="card h-100">
+                                                                        <img src="${pokemon.img}" class="card-img-top" alt="...">
+                                                                        <div class="card-body" id="">
+                                                                            <h5 class="card-title">${pokemon.nome}</h5>
+                                                                            <p class="card-text">${pokemon.descrizione}</p>
+                                                                            <button class="btn btn-warning btnCard" onclick="catturaPokemon('${pokemonJson}')">CATTURA</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>`;
+
+    
+
+
+                                                listaPokemon.innerHTML += card;
+
+                                            }
+                                        });
+                                    })
+                            })
+                    });
+                })
+        }
+
+        // let btnPoke = document.getElementsByClassName("btnCard");
+    
+        document.addEventListener("DOMContentLoaded", stampaCard);
+        document.addEventListener("DOMContentLoaded", salutaAllenatore);
     </script>
 </body>
 

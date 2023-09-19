@@ -1,0 +1,27 @@
+{
+  "allenatori": [
+    {
+      "nome": "Ash",
+      "id": 1
+    },
+    {
+      "nome": "Mario",
+      "id": 2
+    },
+    {
+      "nome": "Mario",
+      "id": 3
+    },
+    {
+      "nome": "Rivale",
+      "id": 4
+    },
+    {
+      "nome": "Ash",
+      "id": 5
+    }
+  ],
+  "pokedex": [
+    
+  ]
+}

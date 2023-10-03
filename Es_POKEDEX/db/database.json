@@ -5,23 +5,44 @@
       "id": 1
     },
     {
-      "nome": "Mario",
+      "nome": "Fabiola",
       "id": 2
     },
     {
-      "nome": "Mario",
+      "nome": "",
       "id": 3
     },
     {
-      "nome": "Rivale",
+      "nome": "",
       "id": 4
     },
     {
       "nome": "Ash",
       "id": 5
+    },
+    {
+      "nome": "Ash",
+      "id": 6
     }
   ],
   "pokedex": [
-    
+    {
+      "nome": "bulbasaur",
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+      "descrizione": "Alla nascita gli è stato piantato sulla schiena un seme\nraro. La pianta sboccia e cresce con lui.",
+      "id": 1
+    },
+    {
+      "nome": "charmander",
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
+      "descrizione": "La fiamma che Charmander ha sulla coda indica la\nsua forza vitale. Se è in forma, la fiamma è vivace.",
+      "id": 2
+    },
+    {
+      "nome": "squirtle",
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
+      "descrizione": "Si ritira nel suo guscio e, alla prima occasione,\ncontrattacca colpendo il nemico con spruzzi d’acqua.",
+      "id": 3
+    }
   ]
 }

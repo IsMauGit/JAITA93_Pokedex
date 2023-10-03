@@ -10,6 +10,18 @@ Raggiunti i 3 pokemon non ne posso più inserire altri.
 
 In alto nella navbar ci sarà la voce di menu "Pokedex", questa voce ti trasferirà sulla pagina pokedex.html nella quale verranno mostrati i 3 pokemon scelti. 
 
+Per ogni pokemon scelto dovrà esserci la possibilità di modificare le info
+es: Pikachu
+tipo: elettrico
+desc: da abbinare a contatori autorizzati
+
+al click sul pulsante modifica posso aggiungere altre info tramite form (nella card dovrà esserci la voce localizza, al click compare una mappa con il segnalino della posizione del pokemon, alla comparsa della mappa comparirà un'altra voce "controlla meteo nella località"
+al click comparirà una finestra nella quale verrà mostrato il meteo attuale (temp, icona, umidità ecc))
+
+inserendo :
+nickname: Alfredo
+geolocalizzazione: via dei matti n0 roma(cliccando sull'indirizzo apro la mappa e mi porta lì)
+
 
 USARE BS 5.3
 

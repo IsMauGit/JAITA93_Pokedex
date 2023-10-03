@@ -64,19 +64,6 @@
 
         }
 
-        function catturaPokemon(pokemon) {
-            let URL = "http://localhost:3000/pokedex";
-            fetch( URL , {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: pokemon
-            })
-            .then(data =>{return data.json()})
-            }
-        
-
         function stampaCard() {
             let URL = "https://pokeapi.co/api/v2/pokemon/?limit=20&offset=0";
             fetch(URL)
@@ -115,28 +102,69 @@
                                                     descrizionePoke);
                                                 // console.log(pokemon);
 
-                                                // let btnPoke = document.createElement("button");
-                                                // btnPoke.innerHTML = "CATTURA!";
-                                                // btnPoke.setAttribute("class", "btn btn-warning");
+                                                let divCol = document.createElement("div");
+                                                divCol.setAttribute("class", "col");
 
-                                                let pokemonJson = JSON.stringify(pokemon);
-                                                console.log(pokemonJson);
+                                                let divCard = document.createElement("div");
+                                                divCard.setAttribute("class", "card h-100");
 
-                                                let card = ` <div class="col">
-                                                                    <div class="card h-100">
-                                                                        <img src="${pokemon.img}" class="card-img-top" alt="...">
-                                                                        <div class="card-body" id="">
-                                                                            <h5 class="card-title">${pokemon.nome}</h5>
-                                                                            <p class="card-text">${pokemon.descrizione}</p>
-                                                                            <button class="btn btn-warning btnCard" onclick="catturaPokemon('${pokemonJson}')">CATTURA</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>`;
+                                                divCol.appendChild(divCard);
 
-    
+                                                let imgPokemonCard =
+                                                    `<img src="${pokemon.img}" class="card-img-top" alt="...">`;
 
+                                                divCard.innerHTML = imgPokemonCard;
 
-                                                listaPokemon.innerHTML += card;
+                                                let divCardBody = document.createElement(
+                                                    "div");
+                                                divCardBody.setAttribute("class",
+                                                    "card-body");
+
+                                                divCard.appendChild(divCardBody);
+
+                                                let cardBody = `<h5 class="card-title">${pokemon.nome}</h5>
+                                                <p class="card-text">${pokemon.descrizione}</p>`;
+
+                                                let btnPoke = document.createElement(
+                                                    "button");
+                                                btnPoke.innerHTML = "CATTURA";
+                                                btnPoke.setAttribute("class",
+                                                    "btn btn-warning btnCard");
+
+                                                divCardBody.innerHTML = cardBody;
+                                                divCardBody.appendChild(btnPoke);
+
+                                                listaPokemon.appendChild(divCol);
+
+                                                function catturaPokemon() {
+                                                    let URL =
+                                                        "http://localhost:3000/pokedex";
+
+                                                    
+                                                        fetch(URL)
+                                                        .then(data => {return data.json()})
+                                                        .then(response =>{
+
+                                                            if(response.length >= 3 ){
+                                                                alert("HAI FINITO LE POKEBALL!!!")
+                                                            }else{
+                                                                fetch(URL, {
+                                                                    method: "POST",
+                                                                    headers: {
+                                                                        "Content-Type": "application/json"
+                                                                    },
+                                                                    body: JSON.stringify(pokemon)
+                                                                })
+                                                                .then(data => {
+                                                                    return data.json()
+                                                                })
+                                                            }                                                     
+                                                        })
+                                                    
+
+                                                }
+
+                                                btnPoke.addEventListener("click", catturaPokemon);
 
                                             }
                                         });
@@ -147,7 +175,7 @@
         }
 
         // let btnPoke = document.getElementsByClassName("btnCard");
-    
+
         document.addEventListener("DOMContentLoaded", stampaCard);
         document.addEventListener("DOMContentLoaded", salutaAllenatore);
     </script>

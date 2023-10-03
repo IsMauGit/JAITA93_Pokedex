@@ -8,7 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS v5.3 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
 </head>
 
@@ -19,15 +20,29 @@
   <main>
 
     <div class="container mt-5">
-        <h1>Benvenuto allenatore!</h1>
-        <p>come ti chiami?</p>
-        <form action="index.html" id="form">
-            <div class="mb-3 mt-3">
-              <label for="nome" class="form-label">Nome:</label>
-              <input type="text" class="form-control" id="nome" placeholder="Inserisci nome" name="nome">
-            </div>
-            <button type="submit" class="btn btn-primary">Invia</button>
-          </form>
+      <div class="d-flex">
+        <div class="">
+          <img src="./img/OAK.jpg" alt="" class="me-5">
+        </div>
+        <div class="">
+          <h1>Benvenuto allenatore!</h1>
+          <div class="">
+            <form action="index.html" id="form">
+              <div class="mb-3 mt-3">
+                <label for="nome" class="form-label">Come ti chiami?</label>
+                <input type="text" class="form-control" id="nome" placeholder="Inserisci nome" name="nome">
+              </div>
+              <label for="nome" class="form-label">Dimmi, sei un ragazzo o una ragazza?</label>
+              <select class="form-select" aria-label="Default select example">
+                <option selected disabled></option>
+                <option value="1">Sono un ragazzo</option>
+                <option value="2">Sono una ragazza</option>
+              </select>
+              <button type="submit" class="btn btn-primary mt-3">Inizia Avventura!</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
 
 
@@ -35,41 +50,43 @@
   <footer>
     <!-- place footer here -->
   </footer>
- 
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+  </script>
 
   <script>
     let form = document.querySelector("#form");
 
-    function creaAllenatore(){
-        let nome = document.querySelector("#nome").value;
-        if(nome == ""){
-          // console.log(event);
-            event.preventDefault();
-            alert("Inserisci il tuo nome!!");
-        }
-        function Allenatore(nome){
-            this.nome = nome;
-        }
-        let allenatore = new Allenatore(nome);
-        let allenatoreJSON = JSON.stringify(allenatore);
+    function creaAllenatore() {
+      let nome = document.querySelector("#nome").value;
+      if (nome == "") {
+        // console.log(event);
+        event.preventDefault();
+        alert("Inserisci il tuo nome!!");
+      }
 
-        localStorage.setItem("allenatore", allenatoreJSON);
+      function Allenatore(nome) {
+        this.nome = nome;
+      }
+      let allenatore = new Allenatore(nome);
+      let allenatoreJSON = JSON.stringify(allenatore);
 
-        let URL = "http://localhost:3000/allenatori";
+      localStorage.setItem("allenatore", allenatoreJSON);
 
-        fetch( URL , {
+      let URL = "http://localhost:3000/allenatori";
+
+      fetch(URL, {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+          "Content-Type": "application/json"
         },
         body: allenatoreJSON
-    })
+      })
     }
 
     form.addEventListener("submit", creaAllenatore);
-
   </script>
 </body>
 

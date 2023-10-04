@@ -8,21 +8,202 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS v5.3 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+  <link rel="stylesheet" href="./css/style.css">
 <body>
   <header>
     <!-- place navbar here -->
+    <nav class="navbar navbar-expand-sm bg-warning">
+      <div class="container-fluid">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="navbar-brand" href="index.html">torna indietro</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
   </header>
   <main>
+    <div class="container mt-5">
+      <h1>I tuoi pokemon</h1>
+      <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4 m-5" id="listaPokemon"></div>
+    </div>
+    <!-- <div id="map"></div>
+    <div id="meteo" style="display: none;">
+      <h2>Controlla meteo nella località</h2>
+      <p id="meteo-info"></p>
+    </div> -->
 
   </main>
   <footer>
     <!-- place footer here -->
   </footer>
- 
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+  </script>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script>
+    let listaPokemon = document.querySelector("#listaPokemon");
+
+    function Pokemon(nome, img, descrizione, id) {
+      this.nome = nome;
+      this.img = img;
+      this.descrizione = descrizione;
+      this.id = id;
+    }
+
+    function stampaCard() {
+      const URL = "http://localhost:3000/pokedex";
+      fetch(URL)
+        .then(data => {
+          return data.json()
+        })
+        .then(response => {
+          //console.log(response);
+          response.forEach(obj => {
+            let pokemon = new Pokemon(obj.nome, obj.img, obj.descrizione, obj.id);
+            //console.log(pokemon);
+            let divCol = document.createElement("div");
+            divCol.setAttribute("class", "col");
+
+            let divCard = document.createElement("div");
+            divCard.setAttribute("class", "card h-100");
+
+            divCol.appendChild(divCard);
+
+            let imgPokemonCard =
+              `<img src="${pokemon.img}" class="card-img-top" alt="...">`;
+
+            divCard.innerHTML = imgPokemonCard;
+
+            let divCardBody = document.createElement(
+              "div");
+            divCardBody.setAttribute("class",
+              "card-body");
+
+            let btnDelete = document.createElement("button");
+            btnDelete.innerHTML = "LIBERA";
+            btnDelete.setAttribute("class", "btn btn-danger btnCard");
+
+            function liberaPoke() {
+              let UrlDelete = "http://localhost:3000/pokedex/" + pokemon.id;
+              fetch(UrlDelete, {
+                  method: "DELETE",
+                  headers: {
+                    "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify(pokemon)
+                })
+                .then(data => {
+                  return data.json()
+                })
+            }
+
+            btnDelete.addEventListener("click", liberaPoke);
+            divCard.appendChild(divCardBody);
+
+            let cardBody =
+              `<h5 class="card-title">${pokemon.nome}</h5><pclass="card-text">${pokemon.descrizione}</p>`;
+
+            let btnPoke = document.createElement(
+              "button");
+            btnPoke.innerHTML = "MODIFICA";
+            btnPoke.setAttribute("class",
+              "btn btn-warning btnCard");
+
+            divCardBody.innerHTML = cardBody;
+            divCardBody.appendChild(btnPoke);
+            divCardBody.appendChild(btnDelete);
+
+            listaPokemon.appendChild(divCol);
+
+            function modificaPokemon() {
+              localStorage.setItem("pokemon", JSON.stringify(pokemon));
+
+              location.href = "./modifica.html";
+            }
+
+            let btnLoc = document.createElement("button");
+            btnLoc.innerHTML = "LOCALIZZA";
+            btnLoc.setAttribute("class", "btn btn-primary btnCard");
+
+            divCardBody.appendChild(btnLoc);
+
+            function localizzalo(){
+              localStorage.setItem("pokemon", JSON.stringify(pokemon));
+              location.href = "./localizza.html";
+            }
+
+            btnLoc.addEventListener("click", localizzalo);
+
+
+            btnPoke.addEventListener("click", modificaPokemon);
+          });
+        })
+    }
+
+
+    // let map = null;
+
+    // let nomeCitta = "via condotti, 30, Roma";
+
+    // function pokeMap() {
+    //   map = L.map("map").setView([0, 0], 20);
+    //   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    //   }).addTo(map);
+    // }
+
+    // function cercaCitta() {
+    //   let nome = nomeCitta;
+    //   console.log(nome);
+
+    //   if (map == null) {
+    //     pokeMap();
+    //   }
+
+    //   cercaPokemon(nome);
+    //   // document.querySelector("#map").removeAttribute("class");
+
+    // }
+
+    // function cercaPokemon(nome) {
+    //   let nominatimUrl = 'https://nominatim.openstreetmap.org/search?format=json&q=' + nome;
+
+    //   fetch(nominatimUrl)
+    //     .then(function (response) {
+    //       return response.json();
+    //     })
+    //     .then(function (data) {
+    //       if (data.length > 0) {
+    //         let lat = parseFloat(data[0].lat);
+    //         let lon = parseFloat(data[0].lon);
+    //         mostraLuogoSuMappa(lat, lon, nome);
+    //       } else {
+    //         alert('Città non trovata.');
+    //       }
+    //     })
+    //     .catch(function (error) {
+    //       console.log(error);
+    //       alert('Si è verificato un errore nella ricerca della città.');
+    //     });
+    // }
+
+    // function mostraLuogoSuMappa(lat, lon, nome) {
+    //   map.setView([lat, lon], 10);
+    //   L.marker([lat, lon]).addTo(map)
+    //     .bindPopup(nome).openPopup();
+    // }
+
+
+    document.addEventListener("DOMContentLoaded", stampaCard);
+  </script>
 </body>
 
 </html>

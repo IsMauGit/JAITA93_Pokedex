@@ -30,7 +30,7 @@
     <main>
 
         <div class="container mt-5">
-            <h1 id="saluto"></h1>
+            <div id="saluto"></div>
             <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4 m-5" id="listaPokemon"></div>
         </div>
 
@@ -53,15 +53,53 @@
         function salutaAllenatore() {
 
             let nomeAllenatore = JSON.parse(localStorage.getItem("allenatore")).nome;
+            let genAllenatore = JSON.parse(localStorage.getItem("allenatore")).genere;
             // console.log(nomeAllenatore);
-            saluto.innerHTML += "Ciao " + nomeAllenatore + "!!";
+
+            if (genAllenatore == 1) {
+
+                let divCardSaluto = document.createElement("div");
+                divCardSaluto.setAttribute("class", "card col-8 d-flex flex-row align-items-center bg-danger border-0");
+
+                let imgAvatar = `<img src="img/ragazzo.jpg" class="card-img-top rounded-circle img-thumbnail w-25" >`;
+                divCardSaluto.innerHTML = imgAvatar;
+
+                let divSalutoBody = document.createElement("div");
+                divSalutoBody.setAttribute("class", "card-body");
+
+                divCardSaluto.appendChild(divSalutoBody);
+
+                let textBody = `<h4 class="card-title text-white">Benvenuto <span class="text-uppercase font-weight-bold">${nomeAllenatore}</span> !</h4>
+<p class="card-text text-white fs-6">Inizia scegliendo 3 pokemon starter!</p>`;
+                divSalutoBody.innerHTML = textBody;
+
+                saluto.appendChild(divCardSaluto);
+
+            } else if (genAllenatore == 2) {
+
+                let divCardSaluto = document.createElement("div");
+                divCardSaluto.setAttribute("class", "card col-8 d-flex flex-row align-items-center bg-danger border-0");
+
+                let imgAvatar = `<img src="img/ragazza.jpg" class="card-img-top rounded-circle img-thumbnail w-25" >`;
+                divCardSaluto.innerHTML = imgAvatar;
+
+                let divSalutoBody = document.createElement("div");
+                divSalutoBody.setAttribute("class", "card-body");
+
+                divCardSaluto.appendChild(divSalutoBody);
+
+                let textBody = `<h4 class="card-title text-white">Benvenuta <span class="text-uppercase font-weight-bold">${nomeAllenatore}</span> !</h4>
+<p class="card-text text-white fs-6">Inizia scegliendo 3 pokemon starter!</p>`;
+                divSalutoBody.innerHTML = textBody;
+
+                saluto.appendChild(divCardSaluto);
+            }
         }
 
         function Pokemon(nome, img, descrizione) {
             this.nome = nome;
             this.img = img;
             this.descrizione = descrizione;
-
         }
 
         function stampaCard() {
@@ -140,31 +178,39 @@
                                                     let URL =
                                                         "http://localhost:3000/pokedex";
 
-                                                    
-                                                        fetch(URL)
-                                                        .then(data => {return data.json()})
-                                                        .then(response =>{
 
-                                                            if(response.length >= 3 ){
-                                                                alert("HAI FINITO LE POKEBALL!!!")
-                                                            }else{
-                                                                fetch(URL, {
-                                                                    method: "POST",
-                                                                    headers: {
-                                                                        "Content-Type": "application/json"
-                                                                    },
-                                                                    body: JSON.stringify(pokemon)
-                                                                })
-                                                                .then(data => {
-                                                                    return data.json()
-                                                                })
-                                                            }                                                     
+                                                    fetch(URL)
+                                                        .then(data => {
+                                                            return data.json()
                                                         })
-                                                    
+                                                        .then(response => {
+
+                                                            if (response.length >= 3) {
+                                                                alert(
+                                                                    "HAI FINITO LE POKEBALL!!!")
+                                                            } else {
+                                                                fetch(URL, {
+                                                                        method: "POST",
+                                                                        headers: {
+                                                                            "Content-Type": "application/json"
+                                                                        },
+                                                                        body: JSON
+                                                                            .stringify(
+                                                                                pokemon
+                                                                                )
+                                                                    })
+                                                                    .then(data => {
+                                                                        return data
+                                                                            .json()
+                                                                    })
+                                                            }
+                                                        })
+
 
                                                 }
 
-                                                btnPoke.addEventListener("click", catturaPokemon);
+                                                btnPoke.addEventListener("click",
+                                                    catturaPokemon);
 
                                             }
                                         });

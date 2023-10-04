@@ -2,46 +2,27 @@
   "allenatori": [
     {
       "nome": "Ash",
+      "genere": "1",
       "id": 1
-    },
-    {
-      "nome": "Fabiola",
-      "id": 2
-    },
-    {
-      "nome": "",
-      "id": 3
-    },
-    {
-      "nome": "",
-      "id": 4
-    },
-    {
-      "nome": "Ash",
-      "id": 5
-    },
-    {
-      "nome": "Ash",
-      "id": 6
     }
   ],
   "pokedex": [
     {
-      "nome": "bulbasaur",
-      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
-      "descrizione": "Alla nascita gli è stato piantato sulla schiena un seme\nraro. La pianta sboccia e cresce con lui.",
+      "nome": "butterfree",
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/12.png",
+      "descrizione": "Adora il nettare dei fiori e riesce a localizzare i campi\nin cui si trova anche una minima quantità di polline.",
       "id": 1
     },
     {
-      "nome": "charmander",
-      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
-      "descrizione": "La fiamma che Charmander ha sulla coda indica la\nsua forza vitale. Se è in forma, la fiamma è vivace.",
+      "nome": "beedrill",
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png",
+      "descrizione": "Possiede tre aculei velenosi sulle zampe anteriori e\nsull’addome con cui punge i nemici ripetutamente.",
       "id": 2
     },
     {
-      "nome": "squirtle",
-      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
-      "descrizione": "Si ritira nel suo guscio e, alla prima occasione,\ncontrattacca colpendo il nemico con spruzzi d’acqua.",
+      "nome": "butterfree",
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/12.png",
+      "descrizione": "Adora il nettare dei fiori e riesce a localizzare i campi\nin cui si trova anche una minima quantità di polline.",
       "id": 3
     }
   ]

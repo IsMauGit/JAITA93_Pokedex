@@ -33,7 +33,7 @@
                 <input type="text" class="form-control" id="nome" placeholder="Inserisci nome" name="nome">
               </div>
               <label for="nome" class="form-label">Dimmi, sei un ragazzo o una ragazza?</label>
-              <select class="form-select" aria-label="Default select example">
+              <select class="form-select" aria-label="Default select example" id="genere">
                 <option selected disabled></option>
                 <option value="1">Sono un ragazzo</option>
                 <option value="2">Sono una ragazza</option>
@@ -57,20 +57,27 @@
   </script>
 
   <script>
+    let  opzioniGenere = document.querySelector("#genere");
     let form = document.querySelector("#form");
 
     function creaAllenatore() {
+      let genSel = opzioniGenere.value;
       let nome = document.querySelector("#nome").value;
       if (nome == "") {
         // console.log(event);
         event.preventDefault();
         alert("Inserisci il tuo nome!!");
-      }
+      }else if(genSel == ""){
+        event.preventDefault();
+        alert("Inserisci il tuo genere!!"); 
+    }
 
-      function Allenatore(nome) {
+    function Allenatore(nome,genere) {
         this.nome = nome;
-      }
-      let allenatore = new Allenatore(nome);
+        this.genere = genere;
+    }
+
+      let allenatore = new Allenatore(nome, genSel);
       let allenatoreJSON = JSON.stringify(allenatore);
 
       localStorage.setItem("allenatore", allenatoreJSON);

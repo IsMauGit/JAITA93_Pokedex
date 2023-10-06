@@ -1,29 +1,39 @@
 {
   "allenatori": [
     {
-      "nome": "Ash",
-      "genere": "1",
-      "id": 1
+      "nome": "Mauro",
+      "genere": "m",
+      "id": 5
+    },
+    {
+      "nome": "Mario",
+      "genere": "f",
+      "id": 6
+    },
+    {
+      "nome": "Mario",
+      "genere": "f",
+      "id": 7
     }
   ],
   "pokedex": [
     {
-      "nome": "butterfree",
-      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/12.png",
-      "descrizione": "Adora il nettare dei fiori e riesce a localizzare i campi\nin cui si trova anche una minima quantità di polline.",
-      "id": 1
-    },
-    {
-      "nome": "beedrill",
-      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png",
-      "descrizione": "Possiede tre aculei velenosi sulle zampe anteriori e\nsull’addome con cui punge i nemici ripetutamente.",
+      "nome": "charizard",
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png",
+      "descrizione": "Quando emette le sue lingue di fuoco, la fiamma\nrossa sulla punta della coda brucia più intensamente.",
       "id": 2
     },
     {
-      "nome": "butterfree",
-      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/12.png",
-      "descrizione": "Adora il nettare dei fiori e riesce a localizzare i campi\nin cui si trova anche una minima quantità di polline.",
+      "nome": "venusaur",
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png",
+      "descrizione": "Si riempie di energia grazie ai grandi petali del fiore,\nche spalanca catturando i raggi solari.",
       "id": 3
+    },
+    {
+      "nome": "ivysaur",
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png",
+      "descrizione": "Dopo aver assorbito sufficienti sostanze nutrienti,\nil bulbo sulla schiena sboccia in un magnifico fiore.",
+      "id": 4
     }
   ]
 }

@@ -58,7 +58,7 @@
 
     function modifica() {
       // console.log(select.value);
-      let URL = "http://localhost:3000/pokedex/" + obj.id;
+      let URL = "http://localhost:3000/pokedex" + "/" +obj.id;
       let newAtt = select.value;
       let textCont = textArea.value;
       if (newAtt == "" || textCont == "") {

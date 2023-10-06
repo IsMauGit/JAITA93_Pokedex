@@ -24,9 +24,11 @@
     <div class="container">
         <h1 id="titolo"></h1>
         <div id="map"></div>
-        <div id="meteo" style="display: none;">
-            <h2>Controlla meteo nella località</h2>
-            <p id="meteo-info"></p>
+        <div id="weatherInfo">
+            <p>Temperatura: <span id="temperature"></span>°C</p>
+            <p>Descrizione: <span id="description"></span></p>
+            <p>Umidità: <span id="humidity"></span></p>
+            <img id="weatherIcon" src="" alt="Icona meteo">
         </div>
     </div>
 
@@ -101,6 +103,39 @@
         }
 
         document.addEventListener("DOMContentLoaded", cercaCitta);
+        document.addEventListener("DOMContentLoaded", getWeather);
+
+        function getWeather() {
+            let city = "roma";
+            let apiKey = 'd710824854c074273125389a2f8728ca';
+            let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=it`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    let temperature = data.main.temp;
+                    let description = data.weather[0].description;
+                    let humidity = data.main.humidity;
+                    let weatherIcon = data.weather[0].icon;
+
+                    let temperatureElement = document.querySelector('#temperature');
+                    let descriptionElement = document.querySelector('#description');
+                    let humidityElement = document.querySelector('#humidity');
+                    let weatherIconElement = document.querySelector('#weatherIcon');
+
+                    temperatureElement.textContent = temperature;
+                    descriptionElement.textContent = description;
+                    humidityElement.textContent = humidity + "%";
+
+                    let iconUrl = `https://openweathermap.org/img/wn/${weatherIcon}.png`;
+                    weatherIconElement.src = iconUrl;
+                })
+                .catch(error => {
+                    console.error('Errore nella richiesta meteo:', error);
+                    let weatherInfo = document.querySelector('#weatherInfo');
+                    weatherInfo.innerHTML = 'Errore nella richiesta meteo';
+                });
+        }
     </script>
 </body>
 

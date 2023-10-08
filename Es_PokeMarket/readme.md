@@ -8,5 +8,5 @@ tabella prodotti: id, nome, descrizione, prezzo, quantità
 
 tabella utenti: id, nome, genere
 
-, tabella utenti, tabella join
+tabella join
 

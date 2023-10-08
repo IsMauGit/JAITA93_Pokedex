@@ -60,11 +60,14 @@
     let  opzioniGenere = document.querySelector("#genere");
     let form = document.querySelector("#form");
 
+    
+    
+    
+    
     function creaAllenatore() {
       let genSel = opzioniGenere.value;
       let nome = document.querySelector("#nome").value;
       if (nome == "") {
-        // console.log(event);
         event.preventDefault();
         alert("Inserisci il tuo nome!!");
       }else if(genSel == ""){

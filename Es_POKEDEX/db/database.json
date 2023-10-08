@@ -3,20 +3,26 @@
     {
       "nome": "Mauro",
       "genere": "m",
-      "id": 5
+      "id": 1
     },
     {
       "nome": "Mario",
-      "genere": "f",
-      "id": 6
+      "genere": "m",
+      "id": 2
     },
     {
       "nome": "Mario",
-      "genere": "f",
-      "id": 7
+      "genere": "m",
+      "id": 3
     }
   ],
   "pokedex": [
+    {
+      "nome": "ivysaur",
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png",
+      "descrizione": "Dopo aver assorbito sufficienti sostanze nutrienti,\nil bulbo sulla schiena sboccia in un magnifico fiore.",
+      "id": 1
+    },
     {
       "nome": "charizard",
       "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png",
@@ -24,16 +30,10 @@
       "id": 2
     },
     {
-      "nome": "venusaur",
-      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png",
-      "descrizione": "Si riempie di energia grazie ai grandi petali del fiore,\nche spalanca catturando i raggi solari.",
+      "nome": "caterpie",
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10.png",
+      "descrizione": "Per proteggersi emette un puzzo terribile\ndall’antenna sul capo, tenendo lontani i nemici.",
       "id": 3
-    },
-    {
-      "nome": "ivysaur",
-      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png",
-      "descrizione": "Dopo aver assorbito sufficienti sostanze nutrienti,\nil bulbo sulla schiena sboccia in un magnifico fiore.",
-      "id": 4
     }
   ]
 }

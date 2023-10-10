@@ -6,34 +6,39 @@
       "id": 1
     },
     {
-      "nome": "Mario",
-      "genere": "m",
+      "nome": "Mauro",
+      "genere": "f",
       "id": 2
     },
     {
-      "nome": "Mario",
-      "genere": "m",
+      "nome": "Ash",
+      "genere": "f",
       "id": 3
+    },
+    {
+      "nome": "Ash",
+      "genere": "m",
+      "id": 4
+    },
+    {
+      "id": 5
+    },
+    {
+      "id": 6
     }
   ],
   "pokedex": [
     {
-      "nome": "ivysaur",
-      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png",
-      "descrizione": "Dopo aver assorbito sufficienti sostanze nutrienti,\nil bulbo sulla schiena sboccia in un magnifico fiore.",
-      "id": 1
-    },
-    {
-      "nome": "charizard",
-      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png",
-      "descrizione": "Quando emette le sue lingue di fuoco, la fiamma\nrossa sulla punta della coda brucia più intensamente.",
-      "id": 2
-    },
-    {
-      "nome": "caterpie",
-      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10.png",
-      "descrizione": "Per proteggersi emette un puzzo terribile\ndall’antenna sul capo, tenendo lontani i nemici.",
+      "nome": "kakuna",
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/14.gif",
+      "descrizione": "Quasi incapace di muoversi, questo Pokémon può\nsolo indurire il proprio guscio per proteggersi.",
       "id": 3
+    },
+    {
+      "nome": "venusaur",
+      "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/3.gif",
+      "descrizione": "Si riempie di energia grazie ai grandi petali del fiore,\nche spalanca catturando i raggi solari.",
+      "id": 4
     }
   ]
 }

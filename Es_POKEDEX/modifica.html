@@ -47,7 +47,7 @@
     let obj = JSON.parse(localStorage.getItem("pokemon"));
     //console.log(obj);
 
-    let imgPokemon = `<img src="${obj.img}" class="card-img-top" alt="..." style="height: 200px; width: auto;">`;
+    let imgPokemon = `<img src="${obj.img}">`;
     divPoke.innerHTML = imgPokemon + `<h2> ${obj.nome} </h2>`;
 
     function Pokemon(nome, img, descrizione, ) {

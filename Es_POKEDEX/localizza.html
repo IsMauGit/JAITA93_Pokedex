@@ -77,7 +77,7 @@
                         let lon = parseFloat(data[0].lon);
                         mostraLuogoSuMappa(lat, lon, nome);
                     } else {
-                        alert('Città non trovata.');
+                        alert('Città non trovata.');s
                     }
                 })
                 .catch(function (error) {
@@ -89,8 +89,8 @@
 
         let myIcon = L.icon({
             iconUrl: imgMarker,
-            iconSize: [100, 100],
-            iconAnchor: [50, 20]
+            iconSize: [60, 60],
+            iconAnchor: [20, 0]
         });
 
         function mostraLuogoSuMappa(lat, lon, nome) {

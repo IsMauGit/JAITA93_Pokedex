@@ -27,7 +27,7 @@
         <div class="">
           <h1>Benvenuto allenatore!</h1>
           <div class="">
-            <form action="index.html" id="form">
+            <form action="#" id="form" onsubmit="return controlloDB()">
               <div class="mb-3 mt-3">
                 <label for="nome" class="form-label">Come ti chiami?</label>
                 <input type="text" class="form-control" id="nome" placeholder="Inserisci nome" name="nome">
@@ -57,30 +57,50 @@
   </script>
 
   <script>
-    let  opzioniGenere = document.querySelector("#genere");
+    let opzioniGenere = document.querySelector("#genere");
     let form = document.querySelector("#form");
 
-    
-    
-    
-    
-    function creaAllenatore() {
+
+    function Allenatore(nome, genere) {
+      this.nome = nome;
+      this.genere = genere;
+    }
+
+
+    function controlloDB() {
       let genSel = opzioniGenere.value;
       let nome = document.querySelector("#nome").value;
       if (nome == "") {
-        event.preventDefault();
+        // event.preventDefault();
         alert("Inserisci il tuo nome!!");
-      }else if(genSel == ""){
-        event.preventDefault();
-        alert("Inserisci il tuo genere!!"); 
+        return false;
+      } else if (genSel == "") {
+        // event.preventDefault();
+        alert("Inserisci il tuo genere!!");
+        return false;
+      } else {
+        let URL = "http://localhost:3000/allenatori";
+        fetch(URL).then(data => data.json())
+          .then(res => {
+            let allenatore = new Allenatore(nome, genSel);
+            let allenatoreDB = res.find(function (res) {
+              return res.nome == this.nome && res.genere == this.genere;
+            }, allenatore);
+            if (allenatoreDB != undefined) {
+              alert("allenatore esistente")
+              return false;
+            } else {
+              creaAllenatore(allenatore);
+              return true;
+            }
+          })
+      }
     }
 
-    function Allenatore(nome,genere) {
-        this.nome = nome;
-        this.genere = genere;
-    }
 
-      let allenatore = new Allenatore(nome, genSel);
+    function creaAllenatore(allenatore) {
+
+      // let allenatore = new Allenatore(nome, genSel);
       let allenatoreJSON = JSON.stringify(allenatore);
 
       localStorage.setItem("allenatore", allenatoreJSON);
@@ -96,7 +116,7 @@
       })
     }
 
-    form.addEventListener("submit", creaAllenatore);
+    // form.addEventListener("submit", controlloDB);
   </script>
 </body>
 

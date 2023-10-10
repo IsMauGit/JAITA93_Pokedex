@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Title</title>
+  <title>Scermata 1</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,44 +11,64 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
+  <!--Font-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Josefin+Sans:wght@200;300;400;600&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ysabeau+Infant:ital,wght@0,1;0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,1;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/normalize.css">
+  <link rel="stylesheet" href="./css/style.css">
+
 </head>
 
-<body>
+<body id="pokeCenter">
   <header>
     <!-- place navbar here -->
-  </header>
-  <main>
+    <nav class="navbar navbar-expand bg-warning d-flex justify-content-around shadow-lg p-3 mb-5 ">
 
-    <div class="container mt-5">
-      <div class="d-flex">
-        <div class="">
-          <img src="./img/OAK.jpg" alt="" class="me-5">
+      <ul class="nav navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#"><strong>Pokedex API esercizio</strong> </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main class="d-flex">
+
+    <div class="container">
+      <div class="d-flex justify-content-evenly">
+        <div class="d-flex align-self-end ">
+          <img src="./img/ProfOAK-noBg.png" id="profOak" class="sticky-bottom">
         </div>
-        <div class="">
-          <h1>Benvenuto allenatore!</h1>
-          <div class="">
-            <form action="#" id="form" onsubmit="return controlloDB()">
-              <div class="mb-3 mt-3">
-                <label for="nome" class="form-label">Come ti chiami?</label>
-                <input type="text" class="form-control" id="nome" placeholder="Inserisci nome" name="nome">
-              </div>
-              <label for="nome" class="form-label">Dimmi, sei un ragazzo o una ragazza?</label>
+        <div class="card border-0 shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+          <div class="card-title">
+            <h1>Benvenuto allenatore!</h1>
+          </div>
+          <div class="card-body">
+            <form action="index.html" id="form">
+              <label for="nome" class="form-label">Come ti chiami?</label>
+              <input type="text" class="form-control" id="nome" placeholder="Inserisci nome" name="nome">
+              <label for="nome" class="form-label mt-3">Dimmi, sei un ragazzo o una ragazza?</label>
               <select class="form-select" aria-label="Default select example" id="genere">
                 <option selected disabled></option>
                 <option value="m">Sono un ragazzo</option>
                 <option value="f">Sono una ragazza</option>
               </select>
-              <button type="submit" class="btn btn-primary mt-3">Inizia Avventura!</button>
-            </form>
+              <button type="submit" class="btn btn-primary mt-3">Inizia l'Avventura!</button>
           </div>
+          </form>
         </div>
       </div>
+    </div>
     </div>
 
 
   </main>
-  <footer>
+  <footer class="bg-black fixed-bottom" id="fine">
     <!-- place footer here -->
+    <p>JAITA93 - Gruppo Laura, Mauro, Fabiola e Giovanni</p>
   </footer>
 
 
@@ -57,56 +77,65 @@
   </script>
 
   <script>
-    let opzioniGenere = document.querySelector("#genere");
     let form = document.querySelector("#form");
-
 
     function Allenatore(nome, genere) {
       this.nome = nome;
       this.genere = genere;
     }
 
-
-    function controlloDB() {
-      let genSel = opzioniGenere.value;
-      let nome = document.querySelector("#nome").value;
-      if (nome == "") {
-        // event.preventDefault();
-        alert("Inserisci il tuo nome!!");
-        return false;
-      } else if (genSel == "") {
-        // event.preventDefault();
-        alert("Inserisci il tuo genere!!");
-        return false;
-      } else {
-        let URL = "http://localhost:3000/allenatori";
-        fetch(URL).then(data => data.json())
-          .then(res => {
-            let allenatore = new Allenatore(nome, genSel);
-            let allenatoreDB = res.find(function (res) {
-              return res.nome == this.nome && res.genere == this.genere;
-            }, allenatore);
-            if (allenatoreDB != undefined) {
-              alert("allenatore esistente")
-              return false;
-            } else {
-              creaAllenatore(allenatore);
-              return true;
+    function scaricaAll() {
+      localStorage.removeItem("allenatore");
+      let URL = "http://localhost:9010/api/utenti";
+      fetch(URL).then(data => data.json())
+        .then(res => {
+          let arrAll = [];
+          let index = 0;
+          // console.log(res[index]);
+          do {
+            if(res[index]!=undefined){
+              arrAll.push(res[index]);
             }
-          })
+            index++;
+            localStorage.setItem("allRegistrati", JSON.stringify(arrAll));
+          } while (index < arrAll.length);
+          console.log(arrAll);
+        })
+    }
+
+    function controlla() {
+      let nome = document.querySelector("#nome").value;
+      let genSel = document.querySelector("#genere").value;
+      if (nome == "") {
+        event.preventDefault();
+        alert("Inserisci il tuo nome!!");
+        // return false;
+      } else if (genSel == "") {
+        event.preventDefault();
+        alert("Inserisci il tuo genere!!");
+        // return false;
+      } else {
+        let allenatore = new Allenatore(nome, genSel);
+        let allRegistrati = JSON.parse(localStorage.getItem("allRegistrati"));
+        console.log(allRegistrati);
+          let allenatoreDB = allRegistrati.find(function (res) {
+            return res.nome == this.nome && res.genere == this.genere;
+          }, allenatore);
+          if (allenatoreDB != undefined) {
+            alert("allenatore esistente");
+            event.preventDefault();
+          } else {
+            creaAllenatore(allenatore);
+          }
       }
     }
 
+    document.addEventListener("DOMContentLoaded", scaricaAll);
 
     function creaAllenatore(allenatore) {
-
-      // let allenatore = new Allenatore(nome, genSel);
       let allenatoreJSON = JSON.stringify(allenatore);
-
       localStorage.setItem("allenatore", allenatoreJSON);
-
-      let URL = "http://localhost:3000/allenatori";
-
+      let URL = "http://localhost:9010/api/utenti";
       fetch(URL, {
         method: "POST",
         headers: {
@@ -116,7 +145,7 @@
       })
     }
 
-    // form.addEventListener("submit", controlloDB);
+    form.addEventListener("submit", controlla);
   </script>
 </body>
 

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Title</title>
+    <title>PokeCenter</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,34 +11,52 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
+
+    <link rel="stylesheet" href="./css/style.css">
+
 </head>
 
-<body class="bg-danger">
+<body >
     <header>
         <!-- place navbar here -->
-        <nav class="navbar navbar-expand-sm bg-warning">
-            <div class="container-fluid">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="navbar-brand" href="pokedex.html">Pokedex</a>
-                    </li>
-                </ul>
-            </div>
+
+
+        <nav
+            class="navbar navbar-expand bg-warning shadow-lg p-3 mb-5 d-flex justify-content-between position-relative">
+            <ul class="nav navbar-nav d-flex flex-row ">
+                <li class="nav-item d-flex align-items-center position-absolute top-50 start-50 translate-middle">
+                    <a class="nav-link" href="#">
+                        <h2 class="text-black"><strong>POKEMON CENTER</strong></h2>
+                    </a>
+                </li>
+               
+            </ul>
+                    <a class="navbar-brand" href="pokedex.html">
+                        <figure class="figure">
+                            <img src="img/pokedex-icon-15-PhotoRoom.png-PhotoRoom.png" alt="" id="iconPokedex">
+                            <figcaption class="figure-caption text-center text-black"><strong>Pokedex</strong></figcaption>
+                          </figure>
+                    </a>
+
+        
         </nav>
 
+
     </header>
-    <main>
+    <main id="pokeCenter">
 
         <div class="container mt-5">
-            <div id="saluto"></div>
-            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4 m-5" id="listaPokemon"></div>
+            <div id="saluto" class="d-flex justify-content-evenly"></div>
+            <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4 mt-5 mb-5 pb-5 d-flex justify-content-center "
+                id="listaPokemon"></div>
         </div>
 
 
 
     </main>
-    <footer>
+    <footer class="bg-black fixed-bottom " id="fine">
         <!-- place footer here -->
+        <p>JAITA93 - Gruppo Laura, Mauro, Fabiola e Giovanni</p>
     </footer>
 
 
@@ -59,18 +77,20 @@
             if (genAllenatore == "m") {
 
                 let divCardSaluto = document.createElement("div");
-                divCardSaluto.setAttribute("class", "card col-8 d-flex flex-row align-items-center bg-danger border-0");
+                divCardSaluto.setAttribute("class",
+                    "card col-8 d-flex flex-row align-items-center bg-white border-3 border-danger shadow rounded");
 
-                let imgAvatar = `<img src="img/ragazzo.jpg" class="card-img-top rounded-circle img-thumbnail w-25" >`;
-                divCardSaluto.innerHTML = imgAvatar;
+                let imgAvatar =
+                    `<img src="img/ragazzo.jpg" class="card-img-top rounded-circle img-thumbnail" id = "imgAvatar">`;
+                saluto.innerHTML = imgAvatar;
 
                 let divSalutoBody = document.createElement("div");
                 divSalutoBody.setAttribute("class", "card-body");
 
                 divCardSaluto.appendChild(divSalutoBody);
 
-                let textBody = `<h4 class="card-title text-white">Benvenuto <span class="text-uppercase font-weight-bold">${nomeAllenatore}</span> !</h4>
-<p class="card-text text-white fs-6">Inizia scegliendo 3 pokemon starter!</p>`;
+                let textBody = `<h4 class="card-title ">Benvenuto <span class="text-uppercase font-weight-bold">${nomeAllenatore}</span> !</h4>
+<p class="card-text  fs-6">Inizia scegliendo 3 pokemon starter!</p>`;
                 divSalutoBody.innerHTML = textBody;
 
                 saluto.appendChild(divCardSaluto);
@@ -78,19 +98,22 @@
             } else if (genAllenatore == "f") {
 
                 let divCardSaluto = document.createElement("div");
-                divCardSaluto.setAttribute("class", "card col-8 d-flex flex-row align-items-center bg-danger border-0");
+                divCardSaluto.setAttribute("class",
+                    "card col-8 d-flex flex-row align-items-center bg-white border-3 border-danger shadow rounded");
 
-                let imgAvatar = `<img src="img/ragazza.jpg" class="card-img-top rounded-circle img-thumbnail w-25" >`;
-                divCardSaluto.innerHTML = imgAvatar;
+                let imgAvatar =
+                    `<img src="img/ragazza.jpg" class="card-img-top rounded-circle img-thumbnail" id = "imgAvatar">`;
+                saluto.innerHTML = imgAvatar;
 
                 let divSalutoBody = document.createElement("div");
                 divSalutoBody.setAttribute("class", "card-body");
 
                 divCardSaluto.appendChild(divSalutoBody);
 
-                let textBody = `<h4 class="card-title text-white">Benvenuta <span class="text-uppercase font-weight-bold">${nomeAllenatore}</span> !</h4>
-<p class="card-text text-white fs-6">Inizia scegliendo 3 pokemon starter!</p>`;
+                let textBody = `<h4 class="card-title ">Benvenuta <span class="text-uppercase font-weight-bold">${nomeAllenatore}</span> !</h4>
+<p class="card-text  fs-6">Inizia scegliendo i tuoi primi 3 pokemon!</p>`;
                 divSalutoBody.innerHTML = textBody;
+
 
                 saluto.appendChild(divCardSaluto);
             }
@@ -102,7 +125,8 @@
             this.descrizione = descrizione;
         }
 
-        // let id = 1;
+        let id = 1;
+
         function stampaCard() {
             let URL = "https://pokeapi.co/api/v2/pokemon/?limit=20&offset=0";
             fetch(URL)
@@ -115,12 +139,13 @@
                         // console.log(obj);
                         let nomePoke = obj.name;
                         let urlPoke = obj.url;
+
                         fetch(urlPoke)
                             .then(data => {
                                 return data.json();
                             })
                             .then(response => {
-                                console.log(response);
+                                // console.log(response);
                                 let id = response.id;
                                 // let imgPoke = response.sprites.front_default;
                                 //let imgPoke = response.sprites.versions.generation-v.black-white.animated.front_default;
@@ -144,15 +169,17 @@
                                                 // console.log(pokemon);
 
                                                 let divCol = document.createElement("div");
-                                                divCol.setAttribute("class", "col");
+                                                divCol.setAttribute("class",
+                                                    "d-flex justify-content-evenly");
 
                                                 let divCard = document.createElement("div");
-                                                divCard.setAttribute("class", "card h-100");
+                                                divCard.setAttribute("class",
+                                                    "card d-flex flex-row justify-content-evenly border-3 border-danger p-2"
+                                                    );
 
                                                 divCol.appendChild(divCard);
 
-                                                let imgPokemonCard =
-                                                    `<img src="${imgPoke}" class="card-img-top" alt="...">`;
+                                                let imgPokemonCard = `<img src="${imgPoke}" class="card-img-top" alt="...">`;
 
                                                 //let imgPokemonCard = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif`;
 
@@ -162,18 +189,18 @@
                                                 let divCardBody = document.createElement(
                                                     "div");
                                                 divCardBody.setAttribute("class",
-                                                    "card-body");
+                                                    "card-body p-2");
 
                                                 divCard.appendChild(divCardBody);
 
-                                                let cardBody = `<h5 class="card-title">${pokemon.nome}</h5>
-                                                <p class="card-text">${pokemon.descrizione}</p>`;
+                                                let cardBody = `<h5 class="card-title text-capitalize"><strong>${pokemon.nome}</strong></h5>
+                                                <p class="card-text lh-1"><small> ${pokemon.descrizione} </small></p>`;
 
                                                 let btnPoke = document.createElement(
                                                     "button");
                                                 btnPoke.innerHTML = "CATTURA";
                                                 btnPoke.setAttribute("class",
-                                                    "btn btn-warning btnCard");
+                                                    "btn btn-warning btn-sm");
 
                                                 divCardBody.innerHTML = cardBody;
                                                 divCardBody.appendChild(btnPoke);
@@ -181,10 +208,6 @@
                                                 listaPokemon.appendChild(divCol);
 
                                                 function catturaPokemon() {
-
-
-                                                    // alert("hai catturato "+pokemon.nome+"!")
-
                                                     let URL =
                                                         "http://localhost:3000/pokedex";
 

@@ -1,3 +1,43 @@
+body, main, #pokeCenter{
+    background-image: url(https://i.pinimg.com/originals/af/6b/30/af6b3067244212e16310ec1ae9a3adb7.jpg);
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: top;
+    background-attachment: fixed;
+
+    font-family: 'Exo 2', sans-serif;
+    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Ysabeau Infant', sans-serif;
+}
+
+footer, #fine{
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+}
+
+img, #profOak{
+    width: 20rem;
+}
+
+#iconPokedex {
+    width: 100px;
+}
+
+
+#imgAvatar{
+    width: 150px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: red;           
+}
+
+#imgPokemonCard{
+    border: 3px;
+
+}
+
 #map {
     height: 600px;
     width: auto;

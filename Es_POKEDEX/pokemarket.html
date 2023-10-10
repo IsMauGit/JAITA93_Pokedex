@@ -10,7 +10,6 @@
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-
 </head>
 
 <body>
@@ -43,15 +42,16 @@
         function stampaProdotti() {
 
             fetch(URL_PRODOTTI).then(data => data.json())
-            .then(res => {console.log(res);})
+            .then(res => {console.log(res);
+            res.forEach(element => {
+                let nome = element.nome;
+                let descrizione = element.descrizione;
+                let prezzo = element.prezzo;
+                let string = `<h3>${nome}</h3><p>${descrizione}</p><p>PREZZO: ${prezzo}$</p>`;
+                divCard.innerHTML+=string;
+            });
+            })
             
-            // fetch(URL_PRODOTTI, {
-            //         mode: "no-cors"
-            //     })
-            //     .then((data) => {
-            //         return data.json();
-            //     })
-            //     .then(res => {console.log(res);})
         }
 
         document.addEventListener("DOMContentLoaded", stampaProdotti);
